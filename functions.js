@@ -1,3 +1,5 @@
+console.log("*****************\nOpdracht 1");
+
 // -------------------------------  BEGINNER
 
 /* Opdracht 1 */
@@ -11,7 +13,7 @@ const greet = (name) => `Hoi ${name}!`;
 console.log(greet("Nova"));
 console.log(greet("Nick"));
 
-console.log("*****************");
+console.log("*****************\nOpdracht 2");
 
 /* Opdracht 2 */
 // Schrijf een functie die een hoeveelheid minuten verwacht (als een getal) en teruggeeft
@@ -27,7 +29,7 @@ console.log(minutesToSeconds(1));
 console.log(minutesToSeconds(3));
 console.log(minutesToSeconds(23));
 
-console.log("*****************");
+console.log("*****************\nOpdracht 3");
 
 /* Opdracht 3 */
 // Schrijf een functie die een cijfer verwacht en teruggeeft of het cijfer groter is
@@ -43,7 +45,7 @@ console.log(greaterThanZero(-3));
 console.log(greaterThanZero(0));
 console.log(greaterThanZero(300));
 
-console.log("*****************");
+console.log("*****************\nOpdracht 4");
 
 /* Opdracht 4 */
 // Schrijf een functie die twee getallen verwacht en teruggeeft of ze, opgeteld, gróter zijn dan 100.
@@ -58,7 +60,7 @@ console.log(sumGreaterThanOneHundred(1, 23));
 console.log(sumGreaterThanOneHundred(8, 92));
 console.log(sumGreaterThanOneHundred(89, 14));
 
-console.log("*****************");
+console.log("*****************\nOpdracht 5");
 
 /* Opdracht 5 */
 // Schrijf een functie die een array van strings verwacht. Hoelang die array is, weet je niet van tevoren,
@@ -80,7 +82,7 @@ const glueString = (array) => {
 console.log(glueString(["abra", "cadabra"]));
 console.log(glueString(["a", "b", "c", "d", "e"]));
 
-console.log("*****************");
+console.log("*****************\nOpdracht 6, uitwerking 1");
 
 // -------------------------------  INTERMEDIATE
 
@@ -97,7 +99,7 @@ const reverseWord = (word) => word.split("").reverse().join("");
 console.log(reverseWord("koekje"));
 console.log(reverseWord("vrienden"));
 
-console.log("+++++++++++++++++");
+console.log("+++++++++++++++++\nOpdracht 6, uitwerking 2");
 // OF
 
 const reverseWord2 = (word) => {
@@ -111,7 +113,7 @@ const reverseWord2 = (word) => {
 console.log(reverseWord2("koekje"));
 console.log(reverseWord2("vrienden"));
 
-console.log("*****************");
+console.log("*****************\nOpdracht 7");
 
 /* Opdracht 7 */
 // Schrijf een functie die een woord verwacht checkt of dit woord een palindroom is. Een palindroom is een
@@ -124,17 +126,8 @@ console.log("*****************");
 
 const isPalindrome = (word) => {
     word = word.toLowerCase();
-    let part1 = "";
-    let part2 = "";
-    for (let i = 0; i < word.length; i++) {
-        if (i < (word.length / 2)) {
-            part1 += word[i];
-        } else {
-            part2 += word[i];
-        }
-    }
-    part1 = part1.slice(0,-1);
-    part2 = part2.split("").reverse().join("");
+    const part1 = word.slice(0, Math.ceil((word.length / 2)));
+    const part2 = word.slice(Math.floor((word.length / 2))).split("").reverse().join("");
     return part1 === part2;
 }
 
@@ -143,16 +136,30 @@ console.log(isPalindrome("madam"));
 console.log(isPalindrome("Reinier"));
 console.log(isPalindrome("vrienden"));
 
+console.log("*****************\nOpdracht 8");
+
 /* Opdracht 8 */
 // Schrijf een functie die een string en een letter verwacht. De functie telt hoe vaak die letter voorkomt in
 // de string en geeft dit terug. Je mag hiervoor geen string- of array-methoden gebruiken.
 // ---- Verwachte uitkomsten:
-// "Hans en marietje lopen naar de supermarkt" en "e" geeft 6
+// "Hans en Marietje lopen naar de supermarkt" en "e" geeft 6
 // "Hans is zijn mondkapje vergeten" en "a" geeft 2
 
-
+const letterOccurrence = (string, letter) => {
+    let count = [];
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === letter) {
+            count.push(string[i]);
+        }
+    }
+    return count.length;
+}
+console.log(letterOccurrence("Hans en Marietje lopen naar de supermarkt", "e"));
+console.log(letterOccurrence("Hans is zijn mondkapje vergeten", "a"));
 
 // ------------------------------- ADVANCED (optionele bonusopdrachten)
+
+console.log("*****************\nOpdracht 9");
 
 /* Opdracht 9 */
 // Schrijf een functie genaamd lastEntry die de laatste entry van een array teruggeeft.
@@ -161,51 +168,61 @@ console.log(isPalindrome("vrienden"));
 // lastEntry([3, 6, 9, 17, 4, 6, 25, 4]) geeft 4
 // lastEntry([46, 65, 34, 204, 190, 89], 3) geeft [204, 190, 89]
 
+const lastEntry = (array, n) => {
+    if (!n) n = 1;
+    return array.slice(array.length - n);
+}
 
+console.log(lastEntry([3, 6, 9, 17, 4, 6, 25, 4]));
+console.log(lastEntry([46, 65, 34, 204, 190, 89], 3));
+
+console.log("*****************\nOpdracht 10");
 
 /* Opdracht 10 */
 // Schrijf een functie die een array van getallen verwacht. De functie geeft het hoogste
-// getal in de array terug. Je mag hier geen array-object methoden voor gebruiken zoals .max()
+// getal in de array terug. Je mag hier geen array-objectmethoden voor gebruiken zoals .max()
 // ---- Verwachte uitkomsten:
 // [3, 6, 9, 17, 4, 6, 25] geeft 25
 // [46, 65, 34, 204, 190, 89] geeft 204
 
+const highestNumber = (array) => {
+    let num = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > num) {
+            num = array[i];
+        }
+    }
+    return num;
+}
 
+console.log(highestNumber([3, 6, 9, 17, 4, 6, 25]));
+console.log(highestNumber([46, 65, 34, 204, 190, 89]));
+
+
+console.log("*****************\nOpdracht 11");
 
 /* Opdracht 11 */
 // Schrijf een functie die geen parameters verwacht en de getallen 1 tot 100 print.
 // Voor getallen die deelbaar zijn door 3 print je "Fizz" in plaats van het getal.
 // Voor getallen die deelbaar zijn door 5 print je "Buzz" in plaats van het getal.
 // Voor getallen die zowel deelbaar zijn door 3 als door 5, print je "FizzBuzz".
-// ---- Verwachte uitkomst:
-// 1
-// 2
-// Fizz
-// 4
-// Buzz
-// Fizz
-// 7
-// 8
-// Fizz
-// Buzz
-// 11
-// Fizz
-// 13
-// 14
-// FizzBuzz
-// 16
-// 17
-// Fizz
-// 19
-// Buzz
-// Fizz
-// 22
-// 23
-// Fizz
-// Buzz
-// 26
-// Fizz
-// 28
-// 29
-// FizzBuzz
-// etc.
+
+const fizzBuzz = (iterations) => {
+    for (let i = 1; i <= iterations; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log("FizzBuzz");
+            continue;
+        }
+        if (i % 3 === 0) {
+            console.log("Fizz");
+            continue;
+        }
+        if (i % 5 === 0) {
+            console.log("Buzz");
+            continue;
+        }
+        console.log(i);
+    }
+}
+
+fizzBuzz(15);
